@@ -1,0 +1,166 @@
+# Medicines apis
+
+type Query {
+  medicines(
+    page: Int
+    limit: Int
+    MedicineFilter: MedicineFilter
+  ): MedicineCollection
+  medicine(id: ID!): Medicine
+  medicinesCategories: MedicinesCategoriesCollection
+}
+
+type Mutation {
+  createMedicine(input: CreateMedicineInput!): MedicineResponse
+  updateMedicine(id: ID!, input: UpdateMedicineInput!): UpdateMedicineResponse
+  deleteMedicine(id: ID!): DeleteMedicineResponse
+  createMedicineCategory(
+    input: CreateMedicineCategoryInput!
+  ): MedicineCategoryResponse
+}
+
+input MedicineFilter {
+  name: String
+  category: String
+  price: MoneyInput
+}
+
+input CreateMedicineInput {
+  name: String!
+  category: ID!
+  description: String
+  image: ImageInput
+  expirationDate: DateTime
+  inventory: InventoryInput!
+  pricing: PricingInput!
+  status: Boolean
+}
+
+input UpdateMedicineInput {
+  id: ID!
+  name: String
+  category: ID
+  description: String
+  image: ImageUpdateInput
+  expirationDate: DateTime
+  inventory: InventoryInput
+  pricing: PricingInput
+  status: Boolean
+}
+
+input CreateMedicineCategoryInput {
+  name: String!
+  description: String
+  subCategories: [CreateMedicineCategoryInput]
+  image: ImageInput
+}
+
+input InventoryInput {
+  medicineId: ID!
+  quantity: Int
+  unit: String
+  manufacturingDate: DateTime
+  expiryDate: DateTime
+}
+
+input PricingInput {
+  medicineId: ID!
+  price: MoneyInput
+  discount: DiscountInput
+  tax: Float
+  total: MoneyInput
+}
+
+type Medicine {
+  id: ID!
+  name: String!
+  category: MedicineCategory!
+  description: String
+  image: Image
+  expirationDate: DateTime
+  inventory: Inventory
+  pricing: Pricing
+  status: Boolean
+}
+
+type MedicineCategory {
+  id: ID!
+  name: String!
+  description: String
+  image: Image
+  subCategories: [MedicineCategory]
+}
+
+type Inventory {
+  medicineId: ID!
+  quantity: Int
+  unit: String
+  manufacturingDate: DateTime
+  expiryDate: DateTime
+}
+
+type Pricing {
+  medicineId: ID!
+  price: Money
+  discount: Discount
+  tax: Float
+  total: Money
+}
+
+type MedicineResponse {
+  isIssue: Boolean
+  medicine: Medicine
+  message: String
+  errors: [Error]
+}
+
+type UpdateMedicineResponse {
+  isIssue: Boolean
+  medicine: Medicine
+  message: String
+  errors: [Error]
+}
+
+type DeleteMedicineResponse {
+  isIssue: Boolean
+  message: String
+  errors: [Error]
+}
+
+type MedicineCollection {
+  items: [Medicine]
+  total: Int
+}
+
+type MedicinesCategoriesCollection {
+  items: [MedicineCategory]
+  total: Int
+}
+
+type MedicineCategoryResponse {
+  isIssue: Boolean
+  medicineCategory: MedicineCategory
+  message: String
+  errors: [Error]
+}
+
+type CreateMedicineCategoryResponse {
+  isIssue: Boolean
+  medicineCategory: MedicineCategory
+  message: String
+  errors: [Error]
+}
+
+type CreateMedicineCategoryResponse {
+  isIssue: Boolean
+  medicineCategory: MedicineCategory
+  message: String
+  errors: [Error]
+}
+
+type UpdateMedicineCategoryResponse {
+  isIssue: Boolean
+  medicineCategory: MedicineCategory
+  message: String
+  errors: [Error]
+}
