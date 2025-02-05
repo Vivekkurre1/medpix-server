@@ -1,6 +1,6 @@
-package com.medicalstore.medicalstore.domain.model.aggregates.medicine;
+package com.medicalstore.medicalstore.domain.model.entity.medicine;
 
-import com.medicalstore.medicalstore.domain.model.aggregates.medicine_categories.MedicineCategory;
+import com.medicalstore.medicalstore.domain.model.entity.medicine_categories.MedicineCategory;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -12,15 +12,10 @@ public class Medicine {
     @Id
     private String id;
     private String name;
-    // add this field private MedicineCategory category;
     @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false) // Creates a foreign key column
+    @JoinColumn(name = "category_id")
     private MedicineCategory category;
     private String description;
-    // private Image image;
-    // private DateTime expiryDate;
-    // private Inventory inventory;
-    // private Pricing pricing;
     private Boolean status;
 
     // getters and setters
@@ -79,20 +74,6 @@ public class Medicine {
 
     public void setStatus(Boolean status) {
         this.status = status;
-    }
-
-    public Medicine(String id, String name, MedicineCategory category, String description,
-            Boolean status) {
-        this.id = id;
-        this.name = name;
-        this.category = category;
-        this.description = description;
-        // this.inventory = inventory;
-        // this.pricing = pricing;
-        this.status = status;
-    }
-
-    public Medicine() {
     }
 
 }

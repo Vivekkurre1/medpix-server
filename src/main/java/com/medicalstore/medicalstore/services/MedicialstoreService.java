@@ -1,64 +1,42 @@
-package com.medicalstore.medicalstore.services;
 
-import java.util.List;
-import java.util.Optional;
+// MedicineService.java
+package com.medicalstore.medicalstore.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.medicalstore.medicalstore.domain.model.aggregates.medicine.Medicine;
-import com.medicalstore.medicalstore.domain.model.aggregates.medicine_categories.MedicineCategory;
-import com.medicalstore.medicalstore.repository.MedicineCategoryRepository;
-import com.medicalstore.medicalstore.repository.MedpixRepository;
+import com.medicalstore.medicalstore.domain.model.entity.medicine.Medicine;
+import com.medicalstore.medicalstore.domain.model.entity.medicine_categories.MedicineCategory;
+import com.medicalstore.medicalstore.domain.repository.MedicineCategoryRepository;
+import com.medicalstore.medicalstore.domain.repository.MedicineRepository;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MedicialstoreService {
-
     @Autowired
-    private MedpixRepository medpixRepository;
+    private MedicineRepository medicineRepository;
+    @Autowired
+    private MedicineCategoryRepository categoryRepository;
 
     public List<Medicine> getAllMedicines() {
-        return medpixRepository.findAll();
+        return medicineRepository.findAll();
     }
 
     public Optional<Medicine> getMedicineById(String id) {
-        return medpixRepository.findById(id);
+        return medicineRepository.findById(id);
     }
 
-    @Autowired
-    private MedicineCategoryRepository medicineCategoryRepository; // Inject MedicineCategory repository
-
-    public Medicine createMedicine(Medicine medicine) {
-        if (medicine.getCategory() != null) {
-            String categoryId = medicine.getCategory().getId();
-            Optional<MedicineCategory> categoryOptional = medicineCategoryRepository.findById(categoryId);
-
-            if (categoryOptional.isEmpty()) {
-                throw new RuntimeException("MedicineCategory with id " + categoryId + " does not exist.");
-            }
-
-            medicine.setCategory(categoryOptional.get()); // Set the fetched category
-        }
-
-        return medpixRepository.save(medicine);
+    public Medicine createMedicine(String id, String name, String categoryId, String description, Boolean status) {
+        MedicineCategory category = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new RuntimeException("Category not found"));
+        Medicine medicine = new Medicine();
+        medicine.setId(id);
+        medicine.setName(name);
+        medicine.setCategory(category);
+        medicine.setDescription(description);
+        medicine.setStatus(status);
+        return medicineRepository.save(medicine);
     }
-
-    public Medicine updateMedicine(String id, Medicine medicine) {
-        Optional<Medicine> existingMedicine = medpixRepository.findById(id);
-        if (existingMedicine.isPresent()) {
-            Medicine updatedMedicine = existingMedicine.get();
-            updatedMedicine.setName(medicine.getName());
-            updatedMedicine.setDescription(medicine.getDescription());
-            // updatedMedicine.setPricing(medicine.getPricing());
-            // updatedMedicine.setInventory(medicine.getInventory());
-            updatedMedicine.setStatus(medicine.getStatus());
-            return medpixRepository.save(updatedMedicine);
-        }
-        return null;
-    }
-
-    public void deleteMedicine(String id) {
-        medpixRepository.deleteById(id);
-    }
-
 }

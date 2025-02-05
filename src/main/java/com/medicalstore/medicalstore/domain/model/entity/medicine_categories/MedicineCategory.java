@@ -1,27 +1,15 @@
-package com.medicalstore.medicalstore.domain.model.aggregates.medicine_categories;
+package com.medicalstore.medicalstore.domain.model.entity.medicine_categories;
 
 import jakarta.persistence.*;
-import java.util.UUID;
+// import java.util.UUID;
 
 @Entity
 public class MedicineCategory {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID) // Use UUID for ID generation
+    // @GeneratedValue(strategy = GenerationType.UUID) // Use UUID for ID generation
     private String id;
-
     private String name;
     private String description;
-
-    // Constructors
-    public MedicineCategory() {
-        this.id = UUID.randomUUID().toString(); // Ensure unique ID is set
-    }
-
-    public MedicineCategory(String name, String description) {
-        this.id = UUID.randomUUID().toString();
-        this.name = name;
-        this.description = description;
-    }
 
     // Getters and Setters
     public String getId() {
