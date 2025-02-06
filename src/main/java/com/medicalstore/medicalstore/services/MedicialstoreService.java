@@ -5,8 +5,10 @@ package com.medicalstore.medicalstore.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.medicalstore.medicalstore.domain.model.entity.dashboard.Dashboard;
 import com.medicalstore.medicalstore.domain.model.entity.medicine.Medicine;
 import com.medicalstore.medicalstore.domain.model.entity.medicine_categories.MedicineCategory;
+import com.medicalstore.medicalstore.domain.repository.DashBoardRepository;
 import com.medicalstore.medicalstore.domain.repository.MedicineCategoryRepository;
 import com.medicalstore.medicalstore.domain.repository.MedicineRepository;
 
@@ -19,6 +21,12 @@ public class MedicialstoreService {
     private MedicineRepository medicineRepository;
     @Autowired
     private MedicineCategoryRepository categoryRepository;
+    @Autowired
+    private DashBoardRepository dashBoardRepository;
+
+    public Optional<Dashboard> getDashboard(String id) {
+        return dashBoardRepository.findById(id);
+    }
 
     public List<Medicine> getAllMedicines() {
         return medicineRepository.findAll();

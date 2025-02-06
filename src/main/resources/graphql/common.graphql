@@ -1,0 +1,9 @@
+type Money {
+  amount: Float
+  currency: String
+}
+
+type Error {
+  field: String
+  message: String
+}

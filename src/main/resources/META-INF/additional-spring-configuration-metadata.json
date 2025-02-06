@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "spring.graphql.playground.enabled",
+      "type": "java.lang.String",
+      "description": "A description for 'spring.graphql.playground.enabled'"
+    }
+  ]
+}

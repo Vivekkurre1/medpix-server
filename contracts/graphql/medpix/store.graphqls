@@ -1,0 +1,47 @@
+#write query and mutations for store(medical shop)
+type Query {
+  store(id: ID!): Store
+}
+
+type Mutation {
+  createStore(storeInput: StoreInput!): StoreResponse
+  updateStore(storeId: ID!, storeInput: StoreInput!): StoreResponse
+}
+
+type StoreInput {
+  storeName: String!
+  phone: Phone!
+  address: Address!
+  owner: Owner!
+}
+
+type StoreResponse {
+  store: Store
+}
+
+type Store {
+  storeId: ID!
+  name: String!
+  phone: Phone!
+  address: Address!
+  owner: Owner!
+}
+
+type Phone {
+  countryCode: String!
+  number: String!
+}
+
+type Address {
+  street: String!
+  city: String!
+  state: String!
+  zip: String!
+}
+
+type Owner {
+  name: String!
+  phone: Phone!
+  email: String!
+  permanentAddress: Address!
+}

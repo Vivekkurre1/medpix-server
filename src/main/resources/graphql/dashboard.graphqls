@@ -1,0 +1,59 @@
+type Query {
+  dashboard(storeId: ID!): DashboardResponse
+}
+
+type DashboardResponse {
+  dashboard: Dashboard
+}
+
+type Dashboard {
+  storeId: ID!
+  medicinestats: MedicineStats
+  salesstats: SalesStats
+  stockstats: StockStats
+  expiringstats: ExpiringStats
+  expiredMedicinesStats: ExpiredMedicinesStats
+  customerstats: CustomerStats
+  reportstats: ReportStats
+}
+
+type MedicineStats {
+  total: Money
+  available: Int
+}
+
+type SalesStats {
+  total: Sales
+  today: Sales
+  week: Sales
+  month: Sales
+}
+
+type StockStats {
+  total: Int
+}
+
+type ExpiringStats {
+  total: Int
+  # soon: DateTime
+  soonAmount: Money
+}
+
+type ExpiredMedicinesStats {
+  total: Int
+  totalAmount: Money
+}
+
+type CustomerStats {
+  id: ID!
+  total: Int
+}
+
+type ReportStats {
+  total: Int
+}
+
+type Sales {
+  count: Int
+  amount: Money
+}
