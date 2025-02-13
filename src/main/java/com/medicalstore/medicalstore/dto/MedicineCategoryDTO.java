@@ -1,12 +1,12 @@
-package com.medicalstore.medicalstore.domain.model.entity.medicine_categories;
+package com.medicalstore.medicalstore.dto;
 
-import jakarta.persistence.*;
-// import java.util.UUID;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
-public class MedicineCategory {
+public class MedicineCategoryDTO {
+
     @Id
-    // @GeneratedValue(strategy = GenerationType.UUID) // Use UUID for ID generation
     private String id;
     private String name;
     private String description;

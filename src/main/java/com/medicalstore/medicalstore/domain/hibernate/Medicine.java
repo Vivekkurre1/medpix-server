@@ -1,11 +1,6 @@
-package com.medicalstore.medicalstore.domain.model.entity.medicine;
+package com.medicalstore.medicalstore.domain.hibernate;
 
-import com.medicalstore.medicalstore.domain.model.entity.medicine_categories.MedicineCategory;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 @Entity
 public class Medicine {

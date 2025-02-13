@@ -1,0 +1,66 @@
+# extend type Query {
+#   dashboard(id: ID!): DashboardResponse
+# }
+
+# extend type DashboardResponse {
+#   dashboard: Dashboard
+# }
+
+# type Dashboard {
+#   shopId: ID!
+#   medicinestats: MedicineStats
+#   salesstats: SalesStats
+#   stockstats: StockStats
+#   expiringstats: ExpiringStats
+#   expiredMedicinesStats: ExpiredMedicinesStats
+#   customerstats: CustomerStats
+#   reportstats: ReportStats
+# }
+
+# type MedicineStats {
+#   total: Int
+#   available: Int
+# }
+
+# type SalesStats {
+#   total: Sales
+#   today: Sales
+#   week: Sales
+#   month: Sales
+# }
+
+# type StockStats {
+#   total: Int
+# }
+
+# type ExpiringStats {
+#   total: Int
+#   soon: DateTime
+#   soonAmount: Money
+# }
+
+# type ExpiredMedicinesStats {
+#   total: Int
+#   totalAmount: Money
+# }
+
+# type CustomerStats {
+#   total: Int
+# }
+
+# type ReportStats {
+#   total: Int
+# }
+
+# type Sales {
+#   count: Int
+#   amount: Money
+# }
+
+# #custom scalar for date time
+# scalar DateTime
+
+# type Money {
+#   amount: Float
+#   currency: String
+# }

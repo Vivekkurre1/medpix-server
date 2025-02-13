@@ -1,9 +1,9 @@
-type Query {
+extend type Query {
   getAllMedicines: [Medicine]
   getMedicineById(id: String!): Medicine
 }
 
-type Mutation {
+extend type Mutation {
   createMedicine(
     id: String!
     name: String!

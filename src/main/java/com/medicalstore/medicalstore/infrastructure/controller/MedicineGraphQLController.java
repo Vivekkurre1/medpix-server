@@ -1,9 +1,9 @@
-
-// MedicineGraphQLController.java
 package com.medicalstore.medicalstore.infrastructure.controller;
 
-import com.medicalstore.medicalstore.domain.model.entity.medicine.Medicine;
-import com.medicalstore.medicalstore.services.MedicialstoreService;
+import com.medicalstore.medicalstore.domain.hibernate.MedicineCategory;
+import com.medicalstore.medicalstore.dto.MedicineDTO;
+import com.medicalstore.medicalstore.dto.MedicineInputDTO;
+import com.medicalstore.medicalstore.mediator.MedicineMediator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -17,24 +17,30 @@ import java.util.List;
 public class MedicineGraphQLController {
 
     @Autowired
-    private MedicialstoreService medicineService;
+    private MedicineMediator medicineMediator;
 
     @QueryMapping
-    public List<Medicine> getAllMedicines() {
-        return medicineService.getAllMedicines();
+    public List<MedicineDTO> getAllMedicines() {
+        return medicineMediator.getAllMedicines();
     }
 
     @QueryMapping
-    public Medicine getMedicineById(@Argument String id) {
-        return medicineService.getMedicineById(id).orElse(null);
+    public MedicineDTO getMedicineById(@Argument String id) {
+        return medicineMediator.getMedicineById(id);
     }
 
     @MutationMapping
-    public Medicine createMedicine(@Argument String id,
+    public MedicineDTO createMedicine(@Argument String id,
             @Argument String name,
-            @Argument String categoryId,
+            @Argument MedicineCategory category,
             @Argument String description,
             @Argument Boolean status) {
-        return medicineService.createMedicine(id, name, categoryId, description, status);
+        MedicineInputDTO medicineInputDto = new MedicineInputDTO();
+        medicineInputDto.setId(id);
+        medicineInputDto.setName(name);
+        medicineInputDto.setCategoryId(category.getId());
+        medicineInputDto.setDescription(description);
+        medicineInputDto.setStatus(status);
+        return medicineMediator.createMedicine(medicineInputDto);
     }
 }
