@@ -10,10 +10,11 @@ public class CorsConfig {
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
+            @SuppressWarnings("null")
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/graphql")
-                        .allowedOrigins("*") // Allow all origins
+                        .allowedOrigins("http://localhost:3000") // Replace with your Flutter web URL
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
