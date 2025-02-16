@@ -1,0 +1,17 @@
+type Image {
+  id: ID!
+  url: String!
+  isPrimary: Boolean!
+  height: Int
+  width: Int
+  label: String
+}
+
+input ImageInput {
+  id: ID!
+  url: String!
+  isPrimary: Boolean!
+  height: Int
+  width: Int
+  label: String
+}

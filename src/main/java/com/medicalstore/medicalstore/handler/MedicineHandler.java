@@ -1,10 +1,11 @@
-package com.medicalstore.medicalstore.mediator;
+package com.medicalstore.medicalstore.handler;
 
-import com.medicalstore.medicalstore.dto.MedicineDTO;
-import com.medicalstore.medicalstore.dto.MedicineInputDTO;
-import com.medicalstore.medicalstore.mapper.MedicineMapper;
+import com.medicalstore.medicalstore.dto.medicine.MedicineDTO;
+import com.medicalstore.medicalstore.dto.medicine.MedicineInputDTO;
 import com.medicalstore.medicalstore.services.MedicialstoreService;
 import com.medicalstore.medicalstore.validator.RequestValidator;
+import com.medicalstore.medicalstore.convertors.medicines.CategoryConvertor;
+import com.medicalstore.medicalstore.convertors.medicines.MedicineConvertor;
 import com.medicalstore.medicalstore.domain.hibernate.Medicine;
 import com.medicalstore.medicalstore.domain.hibernate.MedicineCategory;
 import com.medicalstore.medicalstore.domain.repository.MedicineCategoryRepository;
@@ -17,13 +18,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class MedicineMediator {
+public class MedicineHandler {
 
     @Autowired
     private RequestValidator validator;
 
     @Autowired
-    private MedicineMapper mapper;
+    private CategoryConvertor categoryConvertor;
+
+    @Autowired
+    private MedicineConvertor medicineConvertor;
 
     @Autowired
     private MedicialstoreService service;
@@ -36,13 +40,14 @@ public class MedicineMediator {
 
     public List<MedicineDTO> getAllMedicines() {
         List<Medicine> medicines = service.getAllMedicines();
-        return medicines.stream().map(medicine -> mapper.medicineEntityToDto(medicine, medicine.getCategory()))
+        return medicines.stream()
+                .map(medicine -> medicineConvertor.medicineEntityToDto(medicine, medicine.getCategory()))
                 .collect(Collectors.toList());
     }
 
     public MedicineDTO getMedicineById(String id) {
         Medicine medicine = service.getMedicineById(id).orElseThrow(() -> new RuntimeException("Medicine not found"));
-        return mapper.medicineEntityToDto(medicine, medicine.getCategory());
+        return medicineConvertor.medicineEntityToDto(medicine, medicine.getCategory());
     }
 
     public MedicineDTO createMedicine(MedicineInputDTO medicineInputDto) {
@@ -54,12 +59,13 @@ public class MedicineMediator {
         MedicineCategory category = categoryRepository.findById(medicineInputDto.getCategoryId())
                 .orElseThrow(() -> new RuntimeException("Category not found"));
         //
-        Medicine medicine = mapper.medicineDtoToEntity(medicineInputDto, mapper.categoryEntityToDto(category));
+        Medicine medicine = medicineConvertor.medicineDtoToEntity(medicineInputDto,
+                categoryConvertor.categoryEntityToDto(category));
 
         // save the medicine and return the saved medicine
         Medicine savedMedicine = service.createMedicine(medicine);
 
         // return the saved medicine
-        return mapper.medicineEntityToDto(savedMedicine, savedMedicine.getCategory());
+        return medicineConvertor.medicineEntityToDto(savedMedicine, savedMedicine.getCategory());
     }
 }

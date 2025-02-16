@@ -1,4 +1,4 @@
-package com.medicalstore.medicalstore.dto;
+package com.medicalstore.medicalstore.dto.medicine;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

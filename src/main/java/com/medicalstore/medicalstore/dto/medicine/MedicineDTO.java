@@ -1,4 +1,4 @@
-package com.medicalstore.medicalstore.dto;
+package com.medicalstore.medicalstore.dto.medicine;
 
 public class MedicineDTO {
     private String id;

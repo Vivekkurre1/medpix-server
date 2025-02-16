@@ -1,0 +1,27 @@
+#common
+scalar DateTime
+
+type Money {
+  amount: Float
+  currency: String
+}
+
+type Discount {
+  percentage: Float
+  amount: Money
+}
+
+input DiscountInput {
+  percentage: Float
+  amount: MoneyInput
+}
+
+input MoneyInput {
+  amount: Float
+  currency: String
+}
+
+type IsIssue {
+  isIssue: Boolean
+  message: String
+}

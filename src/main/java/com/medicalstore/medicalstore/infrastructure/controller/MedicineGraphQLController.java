@@ -1,9 +1,9 @@
 package com.medicalstore.medicalstore.infrastructure.controller;
 
 import com.medicalstore.medicalstore.domain.hibernate.MedicineCategory;
-import com.medicalstore.medicalstore.dto.MedicineDTO;
-import com.medicalstore.medicalstore.dto.MedicineInputDTO;
-import com.medicalstore.medicalstore.mediator.MedicineMediator;
+import com.medicalstore.medicalstore.dto.medicine.MedicineDTO;
+import com.medicalstore.medicalstore.dto.medicine.MedicineInputDTO;
+import com.medicalstore.medicalstore.handler.MedicineHandler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -17,7 +17,7 @@ import java.util.List;
 public class MedicineGraphQLController {
 
     @Autowired
-    private MedicineMediator medicineMediator;
+    private MedicineHandler medicineMediator;
 
     @QueryMapping
     public List<MedicineDTO> getAllMedicines() {

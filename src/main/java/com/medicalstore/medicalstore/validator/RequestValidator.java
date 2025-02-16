@@ -1,8 +1,8 @@
 package com.medicalstore.medicalstore.validator;
 
-import com.medicalstore.medicalstore.dto.MedicineInputDTO;
-
 import org.springframework.stereotype.Component;
+
+import com.medicalstore.medicalstore.dto.medicine.MedicineInputDTO;
 
 @Component
 public class RequestValidator {

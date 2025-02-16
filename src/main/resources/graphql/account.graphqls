@@ -1,0 +1,9 @@
+extend type Query {
+    account(id: ID!): AccountResponse
+}
+
+extend type Mutation {
+    createAccount(account: AccountInput!): AccountResponse
+    updateAccount(account: AccountInput!): AccountResponse
+    deleteAccount(id: ID!): AccountResponse
+}
