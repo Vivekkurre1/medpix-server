@@ -1,9 +1,55 @@
 extend type Query {
-    account(id: ID!): AccountResponse
+  account(accountId: ID!): Account
 }
 
 extend type Mutation {
-    createAccount(account: AccountInput!): AccountResponse
-    updateAccount(account: AccountInput!): AccountResponse
-    deleteAccount(id: ID!): AccountResponse
+  createAccount(account: AccountInput!): CreateAccountResponse
+  updateAccount(accountId: ID!, account: AccountInput!): AccountResponse
+  deleteAccount(accountId: ID!): AccountResponse
+  login(email: String!, password: String!): LogInResponse
+}
+
+type CreateAccountResponse {
+  account: Account
+  isIssue: IsIssue
+}
+
+type Account {
+  id: ID!
+  name: String!
+  email: String
+  phone: String!
+  address: Address
+  role: Role
+}
+
+input AccountInput {
+  name: String!
+  email: String
+  phone: String!
+  address: AddressInput
+}
+
+type AccountResponse {
+  account: Account
+  isIssue: IsIssue
+  # token: AuthToken
+}
+
+type LogInResponse {
+  account: Account
+  isIssue: IsIssue
+  token: AuthToken
+}
+
+type AuthToken {
+  sessionId: String!
+  sessionToken: JwtToken!
+  refreshToken: JwtToken
+}
+
+type JwtToken {
+  tokenId: String!
+  tokenValue: String!
+  expiresAt: DateTime!
 }
