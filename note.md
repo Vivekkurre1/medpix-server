@@ -1,3 +1,30 @@
+1. Add Generated Sources to Build Path
+   Sometimes Maven does not recognize `target/generated-sources` as a source folder, so you need to add it manually:
+
+A. In IntelliJ IDEA:
+Go to `File → Project Structure → Modules`.
+Navigate to `medicalstore (your project) → target/generated-sources`.
+Right-click on `target/generated-sources` → `Mark Directory as → Sources Root`.
+Then click `Apply` and `OK`.
+
+B. In VS Code:
+Press `Ctrl + Shift + P` and search for `Java: Configure Classpath`.
+Add `target/generated-sources` as a Source Folder.
+
+C. In Eclipse:
+Right-click on the Project → `Properties → Java Build Path → Source Tab`.
+Click `Add Folder` and select `target/generated-sources`.
+Click `Apply and Close`.
+
+2. Run Maven Clean and Install
+   If the files are still not accessible, rebuild the project with Maven:
+
+```sh
+mvn clean install
+```
+
+Or click `Maven → Reimport` in IntelliJ/Eclipse.
+
 src/main/java/com/medicalstore/
 │── generated/
 │ ├── Medicine.java # DTO (Data Transfer Object)
