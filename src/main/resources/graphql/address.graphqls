@@ -2,12 +2,12 @@ type Address {
   id: String!
   door: String
   building: String
-  locality: String
+  landmark: String
   street: String
   city: String
   state: String
   country: String
-  postalCode: String
+  pinCode: String
   location: Location
   name: String
 }

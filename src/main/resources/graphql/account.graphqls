@@ -4,13 +4,32 @@ extend type Query {
 
 extend type Mutation {
   createAccount(account: AccountInput!): CreateAccountResponse
-  updateAccount(accountId: ID!, account: AccountInput!): AccountResponse
-  deleteAccount(accountId: ID!): AccountResponse
+  updateAccount(accountId: ID!, account: AccountInput!): UpdateAccountResponse
+  updateAccountAddress(
+    accountId: ID!
+    address: AddressInput!
+  ): UpdateAccountAddressResponse
+  deleteAccount(accountId: ID!): DeleteAccountResponse
   login(email: String!, password: String!): LogInResponse
 }
 
 type CreateAccountResponse {
-  account: Account
+  message: String
+  isIssue: IsIssue
+}
+
+type UpdateAccountResponse {
+  message: String
+  isIssue: IsIssue
+}
+
+type UpdateAccountAddressResponse {
+  message: String
+  isIssue: IsIssue
+}
+
+type DeleteAccountResponse {
+  message: String
   isIssue: IsIssue
 }
 
@@ -19,6 +38,7 @@ type Account {
   name: String!
   email: String
   phone: String!
+  status: boolean!
   address: Address
   role: Role
 }
@@ -33,7 +53,6 @@ input AccountInput {
 type AccountResponse {
   account: Account
   isIssue: IsIssue
-  # token: AuthToken
 }
 
 type LogInResponse {
@@ -52,4 +71,10 @@ type JwtToken {
   tokenId: String!
   tokenValue: String!
   expiresAt: DateTime!
+}
+
+type Role {
+  id: ID!
+  name: String!
+  description: String
 }
