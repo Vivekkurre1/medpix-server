@@ -59,8 +59,3 @@ type Sales {
 
 #custom scalar for date time
 scalar DateTime
-
-type Money {
-  amount: Float
-  currency: String
-}
