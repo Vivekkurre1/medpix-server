@@ -83,3 +83,20 @@ src/
 │ └── graphql/
 │ └── MedicineGraphQLController.java
 └── MedicineProjectApplication.java
+
+launch.json file
+
+{
+"configurations": [
+{
+"type": "java",
+"name": "Spring Boot-MedicalstoreApplication<medicalstore>",
+"request": "launch",
+"cwd": "${workspaceFolder}",
+"mainClass": "com.medicalstore.medicalstore.MedicalstoreApplication",
+"projectName": "medicalstore",
+"args": "",
+"envFile": "${workspaceFolder}/.env"
+}
+]
+}
