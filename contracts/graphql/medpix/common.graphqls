@@ -21,25 +21,17 @@ input MoneyInput {
   currency: String
 }
 
-input ImageInput {
-  id: ID!
-  url: String
-  alt: String
-}
-
-type Image {
-  id: ID!
-  url: String
-  alt: String
-}
-
-type ImageUpdateInput {
-  id: ID!
-  url: String
-  alt: String
-}
-
-type Error {
-  field: String
+type IsIssue {
+  isIssue: Boolean
   message: String
+}
+
+input PhoneInput {
+  countryCode: String
+  number: String
+}
+
+type Phone {
+  countryCode: String
+  number: String
 }

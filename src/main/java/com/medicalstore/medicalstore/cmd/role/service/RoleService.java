@@ -24,4 +24,13 @@ public class RoleService {
     public Role getRoleById(String id) {
         return roleRepository.findById(id).orElse(null);
     }
+
+    public Role updateRole(Role role) {
+        return roleRepository.save(role);
+    }
+
+    public void deleteRole(String id) {
+        roleRepository.deleteById(id);
+    }
+
 }

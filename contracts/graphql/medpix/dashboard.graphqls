@@ -1,5 +1,7 @@
-type Query {
-  dashboard: DashboardResponse
+# scalar DateTime
+
+extend type Query {
+  dashboard(id: ID!): DashboardResponse
 }
 
 type DashboardResponse {
@@ -7,6 +9,7 @@ type DashboardResponse {
 }
 
 type Dashboard {
+  shopId: ID!
   medicinestats: MedicineStats
   salesstats: SalesStats
   stockstats: StockStats
@@ -53,5 +56,5 @@ type ReportStats {
 
 type Sales {
   count: Int
-  amount: Float
+  amount: Money
 }

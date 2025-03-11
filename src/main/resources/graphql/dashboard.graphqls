@@ -1,8 +1,10 @@
+# scalar DateTime
+
 extend type Query {
   dashboard(id: ID!): DashboardResponse
 }
 
-extend type DashboardResponse {
+type DashboardResponse {
   dashboard: Dashboard
 }
 
@@ -56,6 +58,3 @@ type Sales {
   count: Int
   amount: Money
 }
-
-#custom scalar for date time
-scalar DateTime

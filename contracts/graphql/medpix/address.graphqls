@@ -1,0 +1,51 @@
+type Address {
+  id: String!
+  door: String
+  building: String
+  landmark: String
+  street: String
+  city: String
+  state: String
+  country: String
+  pinCode: String
+  location: Location
+  name: String
+}
+
+type Location {
+  longitude: Float!
+  latitude: Float!
+}
+
+input LocationInput {
+  longitude: Float!
+  latitude: Float!
+}
+
+input AddressInput {
+  id: String!
+  name: String
+  door: String
+  building: String
+  locality: String
+  street: String
+  city: String!
+  state: String!
+  country: String!
+  postalCode: String!
+  location: LocationInput
+}
+
+input AddressUpdateInput {
+  id: String!
+  name: String
+  door: String
+  building: String
+  locality: String
+  street: String
+  city: String!
+  state: String!
+  country: String!
+  postalCode: String!
+  location: LocationInput
+}

@@ -1,0 +1,28 @@
+extend type Query {
+  getAllMedicines: [Medicine]
+  getMedicineById(id: String!): Medicine
+}
+
+extend type Mutation {
+  createMedicine(
+    id: String!
+    name: String!
+    categoryId: String!
+    description: String
+    status: Boolean
+  ): Medicine
+}
+
+type Medicine {
+  id: String!
+  name: String!
+  category: MedicineCategory!
+  description: String
+  status: Boolean
+}
+
+type MedicineCategory {
+  id: String!
+  name: String!
+  description: String
+}

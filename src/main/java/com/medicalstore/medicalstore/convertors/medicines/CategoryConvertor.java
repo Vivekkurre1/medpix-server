@@ -1,8 +1,11 @@
 package com.medicalstore.medicalstore.convertors.medicines;
 
+import org.springframework.stereotype.Component;
+
 import com.medicalstore.medicalstore.domain.hibernate.MedicineCategory;
 import com.medicalstore.medicalstore.dto.medicine.MedicineCategoryDTO;
 
+@Component
 public class CategoryConvertor {
 
     // category dtoToEntity
