@@ -16,29 +16,24 @@ extend type Mutation {
 
 type CreateShopResponse {
   shop: Shop
-  isIssue: IsIssue!
-  message: String
+  message: Message!
 }
 
 type UpdateShopResponse {
   shop: Shop
-  isIssue: IsIssue!
-  message: String
+  message: Message!
 }
 
 type DeleteShopResponse {
-  isIssue: IsIssue!
-  message: String
+  message: Message!
 }
 
 type AddShopImagesResponse {
-  isIssue: IsIssue!
-  message: String
+  message: Message!
 }
 
 type DeleteShopImagesResponse {
-  isIssue: IsIssue!
-  message: String
+  message: Message!
 }
 
 type Shop {

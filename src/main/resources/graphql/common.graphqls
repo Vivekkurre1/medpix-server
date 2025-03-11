@@ -21,7 +21,7 @@ input MoneyInput {
   currency: String
 }
 
-type IsIssue {
+type Message {
   isIssue: Boolean
   message: String
 }
