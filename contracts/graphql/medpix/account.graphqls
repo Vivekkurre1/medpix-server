@@ -14,23 +14,19 @@ extend type Mutation {
 }
 
 type CreateAccountResponse {
-  message: String
-  isIssue: IsIssue
+  message: Message
 }
 
 type UpdateAccountResponse {
-  message: String
-  isIssue: IsIssue
+  message: Message
 }
 
 type UpdateAccountAddressResponse {
-  message: String
-  isIssue: IsIssue
+  message: Message
 }
 
 type DeleteAccountResponse {
-  message: String
-  isIssue: IsIssue
+  message: Message
 }
 
 type Account {
@@ -52,12 +48,12 @@ input AccountInput {
 
 type AccountResponse {
   account: Account
-  isIssue: IsIssue
+  message: Message
 }
 
 type LogInResponse {
   account: Account
-  isIssue: IsIssue
+  message: Message
   token: AuthToken
 }
 
