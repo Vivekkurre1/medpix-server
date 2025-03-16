@@ -4,7 +4,7 @@ extend type Query {
 
 extend type Mutation {
   createAccount(account: AccountInput!): CreateAccountResponse
-  updateAccount(accountId: ID!, account: AccountInputd!): UpdateAccountResponse
+  updateAccount(accountId: ID!, account: AccountInput!): UpdateAccountResponse
   updateAccountAddress(
     accountId: ID!
     address: AddressInput!
@@ -66,5 +66,4 @@ type AuthToken {
 type JwtToken {
   tokenId: String!
   tokenValue: String!
-  expiresAt: DateTime!
 }

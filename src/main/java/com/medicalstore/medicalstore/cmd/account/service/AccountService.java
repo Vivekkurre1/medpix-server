@@ -1,36 +1,30 @@
 package com.medicalstore.medicalstore.cmd.account.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.medicalstore.medicalstore.cmd.account.models.dmain.hibernate.Account;
-import com.medicalstore.medicalstore.cmd.account.models.dmain.repository.AccountRepository;
+import com.medicalstore.medicalstore.cmd.account.dmain.hibernate.AccountData;
+import com.medicalstore.medicalstore.cmd.account.dmain.repository.AccountRepository;
 
 @Service
 public class AccountService {
     @Autowired
     private AccountRepository accountRepository;
 
-    public List<Account> getAllAccounts() {
-        return accountRepository.findAll();
+    public AccountData getAccount(String accountId) {
+        return accountRepository.findById(accountId).orElse(null);
     }
 
-    public Account createAccount(Account account) {
+    public AccountData createAccount(AccountData account) {
         return accountRepository.save(account);
     }
 
-    public Account getAccountById(String id) {
-        return accountRepository.findById(id).orElse(null);
-    }
-
-    public Account updateAccount(Account account) {
+    public AccountData updateAccount(AccountData account) {
         return accountRepository.save(account);
     }
 
-    public void deleteAccount(String id) {
-        accountRepository.deleteById(id);
+    public void deleteAccount(String accountId) {
+        accountRepository.deleteById(accountId);
     }
 
 }

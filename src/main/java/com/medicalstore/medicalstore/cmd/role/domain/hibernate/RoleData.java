@@ -1,10 +1,10 @@
-package com.medicalstore.medicalstore.cmd.role.model.domain.hibernate;
+package com.medicalstore.medicalstore.cmd.role.domain.hibernate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
-public class Role {
+public class RoleData {
     @Id
     private String id;
     private String name;

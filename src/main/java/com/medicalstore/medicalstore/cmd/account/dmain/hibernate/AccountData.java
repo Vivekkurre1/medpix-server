@@ -1,7 +1,7 @@
-package com.medicalstore.medicalstore.cmd.account.models.dmain.hibernate;
+package com.medicalstore.medicalstore.cmd.account.dmain.hibernate;
 
 import com.medicalstore.medicalstore.cmd.address.model.domain.hibernate.Address;
-import com.medicalstore.medicalstore.cmd.role.model.domain.hibernate.Role;
+import com.medicalstore.medicalstore.cmd.role.domain.hibernate.RoleData;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -9,7 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Account {
+public class AccountData {
     @Id
     private String id;
     private String name;
@@ -22,7 +22,7 @@ public class Account {
     private Address address;
     @ManyToOne
     @JoinColumn(name = "role_id")
-    private Role role;
+    private RoleData role;
 
     // getters and setters
 
@@ -82,11 +82,11 @@ public class Account {
         this.address = address;
     }
 
-    public Role getRole() {
+    public RoleData getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(RoleData role) {
         this.role = role;
     }
 

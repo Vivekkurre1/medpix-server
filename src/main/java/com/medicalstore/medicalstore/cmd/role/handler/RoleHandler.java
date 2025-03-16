@@ -1,10 +1,12 @@
 package com.medicalstore.medicalstore.cmd.role.handler;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.medicalstore.medicalstore.cmd.role.domain.hibernate.RoleData;
 import com.medicalstore.medicalstore.cmd.role.service.RoleService;
 import com.medicalstore.medicalstore.codegen.types.Message;
 import com.medicalstore.medicalstore.codegen.types.Role;
@@ -14,15 +16,25 @@ import com.medicalstore.medicalstore.codegen.types.RoleInput;
 public class RoleHandler {
 
     @Autowired
+    private RoleConverters converter;
+
+    @Autowired
     private RoleService service;
 
     public List<Role> roles() {
-        // List<Role> roles = service.getAllRoles();
-        return List.of();
+        List<RoleData> rolesData = service.getAllRoles();
+        List<Role> roles = rolesData.stream().map(role -> converter.toRole(role)).toList();
+        return roles;
     }
 
     public Message createRole(RoleInput roleInput) {
-        // return service.createRole(role);
+
+        // generate uuid for roleId
+        String roleId = UUID.randomUUID().toString();
+
+        RoleData roleData = converter.toRoleData(roleId, roleInput);
+        service.createRole(roleData);
+
         String message = "Role created successfully";
         boolean isIssue = false;
 
@@ -34,7 +46,10 @@ public class RoleHandler {
     }
 
     public Message updateRole(String roleId, RoleInput roleInput) {
-        // return service.updateRole(role);
+
+        RoleData roleData = converter.toRoleData(roleId, roleInput);
+        service.updateRole(roleData);
+
         String message = "Role updated successfully";
         boolean isIssue = false;
 
@@ -46,7 +61,9 @@ public class RoleHandler {
     }
 
     public Message deleteRole(String roleId) {
-        // service.deleteRole(roleId);
+
+        service.deleteRole(roleId);
+
         String message = "Role deleted successfully";
         boolean isIssue = false;
 

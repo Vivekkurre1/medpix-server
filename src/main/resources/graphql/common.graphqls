@@ -1,5 +1,5 @@
 #common
-scalar DateTime
+# scalar DateTime
 
 type Money {
   amount: Float

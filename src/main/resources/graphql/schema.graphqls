@@ -3,5 +3,7 @@ schema {
   mutation: Mutation
 }
 
+# scalar DateTime
+
 type Query # Only declared once, do not add fields here!
 type Mutation # Only declared once, do not add fields here!
