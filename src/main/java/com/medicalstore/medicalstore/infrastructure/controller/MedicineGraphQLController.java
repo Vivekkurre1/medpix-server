@@ -1,6 +1,5 @@
 package com.medicalstore.medicalstore.infrastructure.controller;
 
-import com.medicalstore.medicalstore.domain.hibernate.MedicineCategory;
 import com.medicalstore.medicalstore.dto.medicine.MedicineDTO;
 import com.medicalstore.medicalstore.dto.medicine.MedicineInputDTO;
 import com.medicalstore.medicalstore.handler.MedicineHandler;
@@ -32,13 +31,13 @@ public class MedicineGraphQLController {
     @MutationMapping
     public MedicineDTO createMedicine(@Argument String id,
             @Argument String name,
-            @Argument MedicineCategory category,
+            @Argument String categoryId,
             @Argument String description,
             @Argument Boolean status) {
         MedicineInputDTO medicineInputDto = new MedicineInputDTO();
         medicineInputDto.setId(id);
         medicineInputDto.setName(name);
-        medicineInputDto.setCategoryId(category.getId());
+        medicineInputDto.setCategoryId(categoryId);
         medicineInputDto.setDescription(description);
         medicineInputDto.setStatus(status);
         return medicineMediator.createMedicine(medicineInputDto);

@@ -3,8 +3,8 @@ extend type Query {
 }
 
 extend type Mutation {
-  createRole(role: RoleInput!): CreateRoleResponse
-  updateRole(roleId: ID!, role: RoleInput!): UpdateRoleResponse
+  createRole(roleInput: RoleInput!): CreateRoleResponse
+  updateRole(roleId: ID!, roleInput: RoleInput!): UpdateRoleResponse
   deleteRole(roleId: ID!): DeleteRoleResponse
 }
 

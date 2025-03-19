@@ -30,6 +30,9 @@ public class RoleController {
 
     @MutationMapping
     public CreateRoleResponse createRole(@Argument RoleInput roleInput) {
+        if (roleInput == null) {
+            throw new IllegalArgumentException("RoleInput is required and cannot be null.");
+        }
 
         Message message = roleHandler.createRole(roleInput);
 
