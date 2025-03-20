@@ -1,5 +1,5 @@
 type Address {
-  id: String!
+  addressId: String
   door: String
   building: String
   landmark: String
@@ -13,26 +13,26 @@ type Address {
 }
 
 type Location {
-  longitude: Float!
-  latitude: Float!
+  longitude: String!
+  latitude: String!
 }
 
 input LocationInput {
-  longitude: Float!
-  latitude: Float!
+  longitude: String!
+  latitude: String!
 }
 
 input AddressInput {
-  id: String!
+  addressId: String
   name: String
   door: String
   building: String
-  locality: String
+  landmark: String
   street: String
   city: String!
   state: String!
   country: String!
-  postalCode: String!
+  pinCode: String!
   location: LocationInput
 }
 

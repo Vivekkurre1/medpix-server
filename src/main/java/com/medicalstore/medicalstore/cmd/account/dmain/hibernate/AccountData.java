@@ -1,6 +1,5 @@
 package com.medicalstore.medicalstore.cmd.account.dmain.hibernate;
 
-import com.medicalstore.medicalstore.cmd.address.model.domain.hibernate.AddressData;
 import com.medicalstore.medicalstore.cmd.role.domain.hibernate.RoleData;
 
 import jakarta.persistence.Entity;
@@ -11,7 +10,7 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class AccountData {
     @Id
-    private String id;
+    private String accountId;
     private String name;
     private String email;
     private String phone;
@@ -27,11 +26,11 @@ public class AccountData {
     // getters and setters
 
     public String getId() {
-        return id;
+        return accountId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setId(String accountId) {
+        this.accountId = accountId;
     }
 
     public String getName() {

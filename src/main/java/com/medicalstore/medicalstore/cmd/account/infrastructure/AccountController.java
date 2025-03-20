@@ -7,14 +7,7 @@ import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
 import com.medicalstore.medicalstore.cmd.account.handler.AccountHandler;
-import com.medicalstore.medicalstore.codegen.types.Account;
-import com.medicalstore.medicalstore.codegen.types.AccountInput;
-import com.medicalstore.medicalstore.codegen.types.AddressInput;
-import com.medicalstore.medicalstore.codegen.types.CreateAccountResponse;
-import com.medicalstore.medicalstore.codegen.types.DeleteAccountResponse;
-import com.medicalstore.medicalstore.codegen.types.LogInResponse;
-import com.medicalstore.medicalstore.codegen.types.UpdateAccountAddressResponse;
-import com.medicalstore.medicalstore.codegen.types.UpdateAccountResponse;
+import com.medicalstore.medicalstore.codegen.types.*;
 
 @Controller
 public class AccountController {
@@ -39,14 +32,6 @@ public class AccountController {
     public UpdateAccountResponse updateAccount(@Argument String accountId, @Argument AccountInput accountInput) {
         UpdateAccountResponse updateAccountResponse = accountHandler.updateAccount(accountId, accountInput);
         return updateAccountResponse;
-    }
-
-    @MutationMapping
-    public UpdateAccountAddressResponse updateAccountAddress(@Argument String accountId,
-            @Argument AddressInput addressInput) {
-        UpdateAccountAddressResponse updateAccountAddressResponse = accountHandler.updateAccountAddress(accountId,
-                addressInput);
-        return updateAccountAddressResponse;
     }
 
     @MutationMapping

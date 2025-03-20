@@ -8,10 +8,6 @@ extend type Mutation {
     accountId: ID!
     accountInput: AccountInput!
   ): UpdateAccountResponse
-  updateAccountAddress(
-    accountId: ID!
-    addressInput: AddressInput!
-  ): UpdateAccountAddressResponse
   deleteAccount(accountId: ID!): DeleteAccountResponse
   logIn(email: String!, password: String!): LogInResponse
 }
@@ -21,10 +17,6 @@ type CreateAccountResponse {
 }
 
 type UpdateAccountResponse {
-  message: Message
-}
-
-type UpdateAccountAddressResponse {
   message: Message
 }
 
@@ -46,6 +38,7 @@ input AccountInput {
   name: String!
   email: String
   phone: String!
+  password: String!
   status: Boolean!
   address: AddressInput
 }

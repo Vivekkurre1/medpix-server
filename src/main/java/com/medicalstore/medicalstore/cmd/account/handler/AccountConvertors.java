@@ -4,8 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.medicalstore.medicalstore.cmd.account.dmain.hibernate.AccountData;
-import com.medicalstore.medicalstore.cmd.address.handler.AddressConvertors;
-import com.medicalstore.medicalstore.cmd.address.model.domain.hibernate.AddressData;
+import com.medicalstore.medicalstore.cmd.account.dmain.hibernate.AddressData;
 import com.medicalstore.medicalstore.cmd.role.domain.hibernate.RoleData;
 import com.medicalstore.medicalstore.cmd.role.handler.RoleConvertors;
 import com.medicalstore.medicalstore.codegen.types.Account;
@@ -43,7 +42,11 @@ public class AccountConvertors {
         account.setEmail(accountInput.getEmail());
         account.setPhone(accountInput.getPhone());
         account.setStatus(accountInput.getStatus());
-        account.setAddress(address);
+        account.setPassword(accountInput.getPassword());
+        if (accountInput.getAddress() != null) {
+            address = addressConvertors.toAddressData(accountInput.getAddress());
+            account.setAddress(address);
+        }
         account.setRole(roleData);
         return account;
     }

@@ -1,11 +1,11 @@
-package com.medicalstore.medicalstore.cmd.address.model.domain.hibernate;
+package com.medicalstore.medicalstore.cmd.account.dmain.hibernate;
 
 import jakarta.persistence.*;
 
 @Entity
 public class AddressData {
     @Id
-    private String id;
+    private String addressId;
     private String name;
     private String door;
     private String building;
@@ -20,12 +20,12 @@ public class AddressData {
 
     // getters and setters
 
-    public String getId() {
-        return id;
+    public String getAddressId() {
+        return addressId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setAddressId(String addressId) {
+        this.addressId = addressId;
     }
 
     public String getDoor() {

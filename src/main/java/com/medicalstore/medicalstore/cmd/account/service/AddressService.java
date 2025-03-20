@@ -1,12 +1,12 @@
-package com.medicalstore.medicalstore.cmd.address.service;
+package com.medicalstore.medicalstore.cmd.account.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.medicalstore.medicalstore.cmd.address.model.domain.hibernate.AddressData;
-import com.medicalstore.medicalstore.cmd.address.model.domain.repository.AddressRepository;
+import com.medicalstore.medicalstore.cmd.account.dmain.hibernate.AddressData;
+import com.medicalstore.medicalstore.cmd.account.dmain.repository.AddressRepository;
 
 @Service
 public class AddressService {
