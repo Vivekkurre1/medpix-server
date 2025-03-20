@@ -1,6 +1,6 @@
 package com.medicalstore.medicalstore.cmd.account.dmain.hibernate;
 
-import com.medicalstore.medicalstore.cmd.address.model.domain.hibernate.Address;
+import com.medicalstore.medicalstore.cmd.address.model.domain.hibernate.AddressData;
 import com.medicalstore.medicalstore.cmd.role.domain.hibernate.RoleData;
 
 import jakarta.persistence.Entity;
@@ -19,7 +19,7 @@ public class AccountData {
     private Boolean status;
     @ManyToOne
     @JoinColumn(name = "address_id")
-    private Address address;
+    private AddressData address;
     @ManyToOne
     @JoinColumn(name = "role_id")
     private RoleData role;
@@ -74,11 +74,11 @@ public class AccountData {
         this.status = status;
     }
 
-    public Address getAddress() {
+    public AddressData getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(AddressData address) {
         this.address = address;
     }
 

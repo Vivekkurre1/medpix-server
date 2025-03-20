@@ -16,7 +16,7 @@ import com.medicalstore.medicalstore.codegen.types.RoleInput;
 public class RoleHandler {
 
     @Autowired
-    private RoleConverters converter;
+    private RoleConvertors converter;
 
     @Autowired
     private RoleService service;
@@ -32,7 +32,7 @@ public class RoleHandler {
         // generate uuid for roleId
         String roleId = UUID.randomUUID().toString();
 
-        RoleData roleData = converter.toRoleData(roleId, roleInput);
+        RoleData roleData = converter.toNewRoleData(roleId, roleInput);
         service.createRole(roleData);
 
         String message = "Role created successfully";
@@ -47,7 +47,7 @@ public class RoleHandler {
 
     public Message updateRole(String roleId, RoleInput roleInput) {
 
-        RoleData roleData = converter.toRoleData(roleId, roleInput);
+        RoleData roleData = converter.toNewRoleData(roleId, roleInput);
         service.updateRole(roleData);
 
         String message = "Role updated successfully";
@@ -73,4 +73,9 @@ public class RoleHandler {
 
         return messageObj;
     }
+
+    // public RoleData getRole(String name) {
+    // RoleData roleData = service.getRoleByName(name);
+    // return roleData;
+    // }
 }

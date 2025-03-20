@@ -3,7 +3,7 @@ package com.medicalstore.medicalstore.cmd.address.model.domain.hibernate;
 import jakarta.persistence.*;
 
 @Entity
-public class Address {
+public class AddressData {
     @Id
     private String id;
     private String name;

@@ -39,4 +39,8 @@ public class RoleService {
         return message;
     }
 
+    public RoleData getRoleByName(String name) {
+        return roleRepository.findByName(name).orElse(null);
+    }
+
 }

@@ -3,14 +3,17 @@ extend type Query {
 }
 
 extend type Mutation {
-  createAccount(account: AccountInput!): CreateAccountResponse
-  updateAccount(accountId: ID!, account: AccountInput!): UpdateAccountResponse
+  createAccount(accountInput: AccountInput!): CreateAccountResponse
+  updateAccount(
+    accountId: ID!
+    accountInput: AccountInput!
+  ): UpdateAccountResponse
   updateAccountAddress(
     accountId: ID!
-    address: AddressInput!
+    addressInput: AddressInput!
   ): UpdateAccountAddressResponse
   deleteAccount(accountId: ID!): DeleteAccountResponse
-  login(email: String!, password: String!): LogInResponse
+  logIn(email: String!, password: String!): LogInResponse
 }
 
 type CreateAccountResponse {
@@ -43,6 +46,7 @@ input AccountInput {
   name: String!
   email: String
   phone: String!
+  status: Boolean!
   address: AddressInput
 }
 
@@ -54,7 +58,7 @@ type AccountResponse {
 type LogInResponse {
   account: Account
   message: Message
-  token: AuthToken
+  # token: AuthToken
 }
 
 type AuthToken {

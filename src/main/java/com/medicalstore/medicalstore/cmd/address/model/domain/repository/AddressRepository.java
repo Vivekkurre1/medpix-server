@@ -2,8 +2,8 @@ package com.medicalstore.medicalstore.cmd.address.model.domain.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.medicalstore.medicalstore.cmd.address.model.domain.hibernate.Address;
+import com.medicalstore.medicalstore.cmd.address.model.domain.hibernate.AddressData;
 
-public interface AddressRepository extends JpaRepository<Address, String> {
+public interface AddressRepository extends JpaRepository<AddressData, String> {
 
 }

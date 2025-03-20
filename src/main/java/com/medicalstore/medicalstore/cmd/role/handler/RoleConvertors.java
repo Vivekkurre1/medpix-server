@@ -7,7 +7,7 @@ import com.medicalstore.medicalstore.codegen.types.Role;
 import com.medicalstore.medicalstore.codegen.types.RoleInput;
 
 @Component
-public class RoleConverters {
+public class RoleConvertors {
     public Role toRole(RoleData role) {
         Role role1 = new Role();
         role1.setId(role.getId());
@@ -16,7 +16,7 @@ public class RoleConverters {
         return role1;
     }
 
-    public RoleData toRoleData(String roleId, RoleInput roleInput) {
+    public RoleData toNewRoleData(String roleId, RoleInput roleInput) {
         RoleData role = new RoleData();
         role.setId(roleId);
         role.setName(roleInput.getName());
