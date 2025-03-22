@@ -15,6 +15,10 @@ public class AccountService {
         return accountRepository.findById(accountId).orElse(null);
     }
 
+    public AccountData getAccountByEmailAndPassword(String email, String password) {
+        return accountRepository.findByEmailAndPassword(email, password);
+    }
+
     public AccountData createAccount(AccountData account) {
         return accountRepository.save(account);
     }

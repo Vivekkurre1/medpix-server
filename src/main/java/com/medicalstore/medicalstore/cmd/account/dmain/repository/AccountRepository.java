@@ -6,4 +6,6 @@ import com.medicalstore.medicalstore.cmd.account.dmain.hibernate.AccountData;
 
 public interface AccountRepository extends JpaRepository<AccountData, String> {
 
+    AccountData findByEmailAndPassword(String email, String password);
+
 }

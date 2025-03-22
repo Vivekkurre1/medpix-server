@@ -21,7 +21,15 @@ public class AddressService {
         return addressRepository.save(address);
     }
 
+    public AddressData updateAddress(AddressData address) {
+        return addressRepository.save(address);
+    }
+
     public AddressData getAddressById(String id) {
         return addressRepository.findById(id).orElse(null);
+    }
+
+    public void deleteAddress(String id) {
+        addressRepository.deleteById(id);
     }
 }

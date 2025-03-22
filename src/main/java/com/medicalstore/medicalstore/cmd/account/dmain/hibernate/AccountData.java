@@ -81,11 +81,11 @@ public class AccountData {
         this.address = address;
     }
 
-    public RoleData getRole() {
+    public RoleData getRoleData() {
         return role;
     }
 
-    public void setRole(RoleData role) {
+    public void setRoleData(RoleData role) {
         this.role = role;
     }
 

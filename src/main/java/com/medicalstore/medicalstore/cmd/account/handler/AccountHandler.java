@@ -65,9 +65,9 @@ public class AccountHandler {
             String accountId = UUID.randomUUID().toString();
 
             // Fetch role
-            RoleData roleData = roleService.getRoleByName("Admin");
+            RoleData roleData = roleService.getRoleByName("admin");
             if (roleData == null) {
-                message.setMessage("Role 'Admin' not found");
+                message.setMessage("Role 'admin' not found");
                 message.setIsIssue(true);
                 response.setMessage(message);
                 return response;
@@ -77,14 +77,15 @@ public class AccountHandler {
             AccountData accountData = new AccountData();
 
             // Address
-            if (accountInput.getAddress() != null && accountInput.getAddress().getAddressId() == null) {
-
-                AddressInput address = accountInput.getAddress();
-                String addressId = UUID.randomUUID().toString();
-                address.setAddressId(addressId);
-                addressService.createAddress(addressConvertors.toAddressData(address));
-                // add addressId in accountInput of AddressInput of addressId
-                accountInput.getAddress().setAddressId(addressId);
+            if (accountInput.getAddress() != null) {
+                if (accountInput.getAddress().getAddressId() == null) {
+                    AddressInput address = accountInput.getAddress();
+                    String addressId = UUID.randomUUID().toString();
+                    address.setAddressId(addressId);
+                    addressService.createAddress(addressConvertors.toAddressData(address));
+                    // add addressId in accountInput of AddressInput of addressId
+                    accountInput.getAddress().setAddressId(addressId);
+                }
 
             }
             accountData = converter.toAccountData(accountId, accountInput, roleData);
@@ -109,15 +110,119 @@ public class AccountHandler {
     }
 
     public UpdateAccountResponse updateAccount(String accountId, AccountInput accountInput) {
-        return new UpdateAccountResponse();
+        UpdateAccountResponse response = new UpdateAccountResponse();
+        Message message = new Message();
+
+        try {
+            if (accountInput == null) {
+                message.setMessage("Account input is null");
+                message.setIsIssue(true);
+                response.setMessage(message);
+                return response;
+            }
+
+            AccountData accountData = service.getAccount(accountId);
+            if (accountData == null) {
+                message.setMessage("Account not found");
+                message.setIsIssue(true);
+                response.setMessage(message);
+                return response;
+            }
+
+            // Address
+            if (accountInput.getAddress() != null && accountInput.getAddress().getAddressId() == null) {
+
+                AddressInput address = accountInput.getAddress();
+                String addressId = UUID.randomUUID().toString();
+                address.setAddressId(addressId);
+                addressService.createAddress(addressConvertors.toAddressData(address));
+                // add addressId in accountInput of AddressInput of addressId
+                accountInput.getAddress().setAddressId(addressId);
+
+            } else {
+                // Update address
+                addressService.updateAddress(addressConvertors.toAddressData(accountInput.getAddress()));
+            }
+
+            accountData = converter.toAccountData(accountId, accountInput, accountData.getRoleData());
+            accountData = service.updateAccount(accountData);
+            if (accountData != null) {
+                message.setMessage("Account updated successfully");
+                message.setIsIssue(false);
+                response.setMessage(message);
+            } else {
+                message.setMessage("Account not updated");
+                message.setIsIssue(true);
+                response.setMessage(message);
+            }
+        } catch (Exception e) {
+            message.setMessage("An error occurred while updating the account: " + e.getMessage());
+            message.setIsIssue(true);
+            response.setMessage(message);
+        }
+
+        return response;
     }
 
     public DeleteAccountResponse deleteAccount(String accountId) {
-        return new DeleteAccountResponse();
+        DeleteAccountResponse response = new DeleteAccountResponse();
+        Message message = new Message();
+
+        try {
+            AccountData accountData = service.getAccount(accountId);
+            if (accountData == null) {
+                message.setMessage("Account not found");
+                message.setIsIssue(true);
+                response.setMessage(message);
+                return response;
+            }
+
+            // Check if the account has an associated address and delete it
+            if (accountData.getAddress() != null && accountData.getAddress().getAddressId() != null) {
+                addressService.deleteAddress(accountData.getAddress().getAddressId());
+            }
+
+            service.deleteAccount(accountId);
+            message.setMessage("Account and associated address (if any) deleted successfully");
+            message.setIsIssue(false);
+            response.setMessage(message);
+        } catch (Exception e) {
+            message.setMessage("An error occurred while deleting the account: " + e.getMessage());
+            message.setIsIssue(true);
+            response.setMessage(message);
+        }
+
+        return response;
     }
 
     public LogInResponse logIn(String email, String password) {
-        return new LogInResponse();
+        LogInResponse response = new LogInResponse();
+        Message message = new Message();
+        AccountData accountData = new AccountData();
+
+        try {
+            accountData = service.getAccountByEmailAndPassword(email, password);
+            if (accountData != null) {
+                message.setMessage("Log in successful");
+                message.setIsIssue(false);
+                response.setMessage(message);
+                response.setAccount(converter.toAccount(accountData));
+
+            } else {
+                message.setMessage("Invalid email or password");
+                message.setIsIssue(true);
+                response.setMessage(message);
+                return response;
+            }
+
+        } catch (Exception e) {
+            message.setMessage("An error occurred while logging in: " + e.getMessage());
+            message.setIsIssue(true);
+            response.setMessage(message);
+            return response;
+        }
+
+        return response;
     }
 
 }

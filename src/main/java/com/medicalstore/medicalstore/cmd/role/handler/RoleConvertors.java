@@ -24,4 +24,12 @@ public class RoleConvertors {
         return role;
     }
 
+    public RoleData toRoleData(Role roleInput) {
+        RoleData role = new RoleData();
+        role.setId(roleInput.getId());
+        role.setName(roleInput.getName());
+        role.setDescription(roleInput.getDescription());
+        return role;
+    }
+
 }

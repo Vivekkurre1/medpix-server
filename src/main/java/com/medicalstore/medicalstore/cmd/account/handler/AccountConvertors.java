@@ -22,15 +22,20 @@ public class AccountConvertors {
 
     public Account toAccount(AccountData account) {
         Account account1 = new Account();
-        Role role = roleConvertors.toRole(account.getRole());
-        Address address = addressConvertors.toAddress(account.getAddress());
+        Role role = roleConvertors.toRole(account.getRoleData());
+        Address address = new Address();
+        // Address address = addressConvertors.toAddress(account.getAddress());
         account1.setId(account.getId());
         account1.setName(account.getName());
         account1.setEmail(account.getEmail());
         account1.setPhone(account.getPhone());
         account1.setStatus(account.getStatus());
         account1.setRole(role);
-        account1.setAddress(address);
+        // account1.setAddress(address);
+        if (account.getAddress() != null) {
+            address = addressConvertors.toAddress(account.getAddress());
+            account1.setAddress(address);
+        }
         return account1;
     }
 
@@ -47,7 +52,7 @@ public class AccountConvertors {
             address = addressConvertors.toAddressData(accountInput.getAddress());
             account.setAddress(address);
         }
-        account.setRole(roleData);
+        account.setRoleData(roleData);
         return account;
     }
 }
