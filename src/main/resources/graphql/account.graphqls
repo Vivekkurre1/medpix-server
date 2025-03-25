@@ -1,0 +1,66 @@
+extend type Query {
+  account(accountId: ID!): Account
+}
+
+extend type Mutation {
+  createAccount(accountInput: AccountInput!): CreateAccountResponse
+  updateAccount(
+    accountId: ID!
+    accountInput: AccountInput!
+  ): UpdateAccountResponse
+  deleteAccount(accountId: ID!): DeleteAccountResponse
+  logIn(email: String!, password: String!): LogInResponse
+}
+
+type CreateAccountResponse {
+  message: Message
+}
+
+type UpdateAccountResponse {
+  message: Message
+}
+
+type DeleteAccountResponse {
+  message: Message
+}
+
+type Account {
+  id: ID!
+  name: String!
+  email: String
+  phone: String!
+  status: Boolean!
+  address: Address
+  role: Role
+}
+
+input AccountInput {
+  name: String!
+  email: String
+  phone: String!
+  password: String!
+  status: Boolean!
+  address: AddressInput
+}
+
+type AccountResponse {
+  account: Account
+  message: Message
+}
+
+type LogInResponse {
+  account: Account
+  message: Message
+  # token: AuthToken
+}
+
+type AuthToken {
+  sessionId: String!
+  sessionToken: JwtToken!
+  refreshToken: JwtToken
+}
+
+type JwtToken {
+  tokenId: String!
+  tokenValue: String!
+}

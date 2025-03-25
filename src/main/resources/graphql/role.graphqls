@@ -1,0 +1,32 @@
+extend type Query {
+  roles: [Role!]!
+}
+
+extend type Mutation {
+  createRole(roleInput: RoleInput!): CreateRoleResponse
+  updateRole(roleId: ID!, roleInput: RoleInput!): UpdateRoleResponse
+  deleteRole(roleId: ID!): DeleteRoleResponse
+}
+
+type Role {
+  id: ID!
+  name: String!
+  description: String
+}
+
+input RoleInput {
+  name: String!
+  description: String
+}
+
+type CreateRoleResponse {
+  message: Message
+}
+
+type UpdateRoleResponse {
+  message: Message
+}
+
+type DeleteRoleResponse {
+  message: Message
+}

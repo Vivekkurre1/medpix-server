@@ -1,0 +1,7 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query # Only declared once, do not add fields here!
+type Mutation # Only declared once, do not add fields here!

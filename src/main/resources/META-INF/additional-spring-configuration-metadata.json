@@ -1,0 +1,19 @@
+{
+  "properties": [
+    {
+      "name": "spring.graphql.playground.enabled",
+      "type": "java.lang.String",
+      "description": "A description for 'spring.graphql.playground.enabled'"
+    },
+    {
+      "name": "spring.graphql.cors.enabled",
+      "type": "java.lang.String",
+      "description": "A description for 'spring.graphql.cors.enabled'"
+    },
+    {
+      "name": "spring.graphql.timeout",
+      "type": "java.lang.String",
+      "description": "A description for 'spring.graphql.timeout'"
+    }
+  ]
+}
