@@ -172,12 +172,11 @@ public class AccountHandler {
                 return response;
             }
 
+            service.deleteAccount(accountId);
             // Check if the account has an associated address and delete it
             if (accountData.getAddress() != null && accountData.getAddress().getAddressId() != null) {
                 addressService.deleteAddress(accountData.getAddress().getAddressId());
             }
-
-            service.deleteAccount(accountId);
             message.setMessage("Account and associated address (if any) deleted successfully");
             message.setIsIssue(false);
             response.setMessage(message);
