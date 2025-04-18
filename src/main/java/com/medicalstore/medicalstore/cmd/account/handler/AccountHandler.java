@@ -129,19 +129,15 @@ public class AccountHandler {
                 return response;
             }
 
-            // Address
-            if (accountInput.getAddress() != null && accountInput.getAddress().getAddressId() == null) {
-
-                AddressInput address = accountInput.getAddress();
-                String addressId = UUID.randomUUID().toString();
-                address.setAddressId(addressId);
-                addressService.createAddress(addressConvertors.toAddressData(address));
-                // add addressId in accountInput of AddressInput of addressId
-                accountInput.getAddress().setAddressId(addressId);
-
-            } else {
-                // Update address
-                addressService.updateAddress(addressConvertors.toAddressData(accountInput.getAddress()));
+            AddressInput addressInput = accountInput.getAddress();
+            if (addressInput != null) {
+                if (addressInput.getAddressId() == null) {
+                    String addressId = UUID.randomUUID().toString();
+                    addressInput.setAddressId(addressId);
+                    addressService.createAddress(addressConvertors.toAddressData(addressInput));
+                } else {
+                    addressService.updateAddress(addressConvertors.toAddressData(addressInput));
+                }
             }
 
             accountData = converter.toAccountData(accountId, accountInput, accountData.getRoleData());
@@ -149,12 +145,11 @@ public class AccountHandler {
             if (accountData != null) {
                 message.setMessage("Account updated successfully");
                 message.setIsIssue(false);
-                response.setMessage(message);
             } else {
                 message.setMessage("Account not updated");
                 message.setIsIssue(true);
-                response.setMessage(message);
             }
+            response.setMessage(message);
         } catch (Exception e) {
             message.setMessage("An error occurred while updating the account: " + e.getMessage());
             message.setIsIssue(true);
