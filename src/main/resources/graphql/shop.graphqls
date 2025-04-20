@@ -1,13 +1,13 @@
 #shop apis
 extend type Query {
   shop(shopId: ID!): Shop!
-  shops(userId: ID!): [Shop!]!
+  shops(accountId: ID!): [Shop!]!
   shopImages(shopId: ID!): [Image!]!
 }
 
 extend type Mutation {
-  createShop(shop: ShopInput!): CreateShopResponse
-  updateShop(shop: ShopUpdateInput!): UpdateShopResponse
+  createShop(shopInput: ShopInput!): CreateShopResponse
+  updateShop(shopInput: ShopUpdateInput!): UpdateShopResponse
   deleteShop(shopId: ID!): DeleteShopResponse
 
   addShopImages(shopId: ID!, images: [ImageInput!]!): AddShopImagesResponse
@@ -41,6 +41,7 @@ type Shop {
   shopId: ID!
   shopNumber: String!
   name: String!
+  description: String
   address: Address
   phone: Phone
   email: String
@@ -53,6 +54,7 @@ type Shop {
 input ShopInput {
   accountId: ID!
   name: String!
+  description: String
   address: AddressInput
   phone: PhoneInput
   email: String
@@ -63,6 +65,7 @@ input ShopUpdateInput {
   shopId: ID!
   shopNumber: String!
   name: String
+  description: String
   address: AddressUpdateInput
   phone: PhoneInput
   email: String
