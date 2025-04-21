@@ -14,7 +14,8 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/graphql")
-                        .allowedOrigins("http://localhost:3000") // Replace with your Flutter web URL
+                        // .allowedOrigins("http://localhost:3000") // Replace with your Flutter web URL
+                        .allowedOrigins("https://medpix.inopix.in") // ✅ Your live frontend URL
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
