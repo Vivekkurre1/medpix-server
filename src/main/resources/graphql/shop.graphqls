@@ -47,8 +47,8 @@ type Shop {
   email: String
   image: [Image]
   isActive: Boolean
-  createdAt: DateTime!
-  updatedAt: DateTime!
+  createdAt: String!
+  updatedAt: String!
 }
 
 input ShopInput {

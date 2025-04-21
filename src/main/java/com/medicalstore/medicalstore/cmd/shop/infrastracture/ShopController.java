@@ -28,51 +28,33 @@ public class ShopController {
 
     @QueryMapping
     public Shop shop(@Argument String shopId) {
-        Shop shop = new Shop();
+        Shop shop = shopHandler.getSingleShop(shopId);
         return shop;
     }
 
     @QueryMapping
     public List<Shop> shops(@Argument String accountId) {
-        List<Shop> shops = null;
+        List<Shop> shops = shopHandler.getAllShops(accountId);
         return shops;
-    }
-
-    @QueryMapping
-    public List<Image> images(@Argument String shopId) {
-        List<Image> images = null;
-        return images;
     }
 
     // Mutations
 
     @MutationMapping
     public CreateShopResponse createShop(@Argument ShopInput shopInput) {
-        CreateShopResponse shop = new CreateShopResponse();
+        CreateShopResponse shop = shopHandler.createShop(shopInput);
         return shop;
     }
 
     @MutationMapping
     public UpdateShopResponse updateShop(@Argument ShopUpdateInput shopInput) {
-        UpdateShopResponse shop = new UpdateShopResponse();
+        UpdateShopResponse shop = shopHandler.updateShop(shopInput);
         return shop;
     }
 
     @MutationMapping
     public DeleteShopResponse deleteShop(@Argument String shopId) {
-        DeleteShopResponse shop = new DeleteShopResponse();
-        return shop;
-    }
-
-    @MutationMapping
-    public AddShopImagesResponse addShopImages(@Argument String shopId, @Argument List<ImageInput> images) {
-        AddShopImagesResponse shop = new AddShopImagesResponse();
-        return shop;
-    }
-
-    @MutationMapping
-    public DeleteShopImagesResponse deleteShopImages(@Argument String shopId, @Argument List<String> imageIds) {
-        DeleteShopImagesResponse shop = new DeleteShopImagesResponse();
+        DeleteShopResponse shop = shopHandler.deleteShop(shopId);
         return shop;
     }
 }

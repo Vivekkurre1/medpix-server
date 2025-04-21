@@ -26,8 +26,8 @@ public class ImageService {
         imageRepository.deleteAllById(imageIds);
     }
 
-    public List<ImageData> getImages(List<String> imageIds) {
-        return imageRepository.findAllById(imageIds);
+    public List<ImageData> getImages(String shopId) {
+        return imageRepository.findByShop_ShopId(shopId);
     }
 
     public ImageData getImage(String imageId) {
