@@ -14,24 +14,24 @@ public class ImageService {
     @Autowired
     private ImageRepository imageRepository;
 
-    public ImageData addImage(ImageData image) {
-        return imageRepository.save(image);
+    public ImageData getImage(String imageId) {
+        return imageRepository.findById(imageId).orElse(null);
     }
 
     public void deleteImage(String imageId) {
         imageRepository.deleteById(imageId);
     }
 
-    public void deleteImages(List<String> imageIds) {
-        imageRepository.deleteAllById(imageIds);
+    public List<ImageData> addImages(List<ImageData> image) {
+        return imageRepository.saveAll(image);
     }
 
     public List<ImageData> getImages(String shopId) {
         return imageRepository.findByShop_ShopId(shopId);
     }
 
-    public ImageData getImage(String imageId) {
-        return imageRepository.findById(imageId).orElse(null);
+    public void deleteImages(List<String> imageIds) {
+        imageRepository.deleteAllById(imageIds);
     }
 
 }

@@ -9,12 +9,8 @@ import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
 import com.medicalstore.medicalstore.cmd.shop.handler.ShopHandler;
-import com.medicalstore.medicalstore.codegen.types.AddShopImagesResponse;
 import com.medicalstore.medicalstore.codegen.types.CreateShopResponse;
-import com.medicalstore.medicalstore.codegen.types.DeleteShopImagesResponse;
 import com.medicalstore.medicalstore.codegen.types.DeleteShopResponse;
-import com.medicalstore.medicalstore.codegen.types.Image;
-import com.medicalstore.medicalstore.codegen.types.ImageInput;
 import com.medicalstore.medicalstore.codegen.types.Shop;
 import com.medicalstore.medicalstore.codegen.types.ShopInput;
 import com.medicalstore.medicalstore.codegen.types.ShopUpdateInput;

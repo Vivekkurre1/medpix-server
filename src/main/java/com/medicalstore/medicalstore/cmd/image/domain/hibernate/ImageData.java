@@ -22,9 +22,9 @@ public class ImageData {
     private String imageUrl;
     private boolean imageIsPrimary;
     private String label;
-    @ManyToOne
     // @JoinColumn(name = "shop_id") // Optional: customize the column name
-    @JoinColumn(name = "shop_id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(table = "image_data", name = "shop_id", referencedColumnName = "shopId")
     private ShopData shop; // ⚠️ this field name must match `mappedBy = "shop"`
 
 }

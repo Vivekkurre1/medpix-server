@@ -16,8 +16,8 @@ public class AccountController {
     private AccountHandler accountHandler;
 
     @QueryMapping
-    public Account account(@Argument String id) {
-        Account account = accountHandler.account(id);
+    public Account account(@Argument String accountId) {
+        Account account = accountHandler.account(accountId);
         return account;
 
     }

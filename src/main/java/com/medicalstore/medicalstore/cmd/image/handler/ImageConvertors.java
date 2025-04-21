@@ -33,9 +33,15 @@ public class ImageConvertors {
         imageData.setImageIsPrimary(imageInput.getIsPrimary());
         imageData.setLabel(imageInput.getLabel());
         // link with shop by shopId
-        imageData.getShop().setShopId(shopId);
-
+        // imageData.setShopId(shopId);
+        ShopData shopData = new ShopData();
+        shopData.setShopId(shopId);
+        imageData.setShop(shopData);
         return imageData;
+    }
+
+    public List<ImageData> toImageData(String shopId, List<ImageInput> imageInputs) {
+        return imageInputs.stream().map(image -> toImageData(shopId, image)).toList();
     }
 
 }
